@@ -12,7 +12,7 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/async.h>
 #include <memory>
-
+#include <unordered_map>
 #define FILE_MODE 0 
 #define CONSOLE__MODE 1
 #define ROTATING_MODE 2

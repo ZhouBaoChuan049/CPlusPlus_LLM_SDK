@@ -31,6 +31,6 @@ const size_t THREAD_POOL_SIZE = 8192 ;
     }
     std::shared_ptr<spdlog::logger> SpdLogPack::GetSpdLog() 
     {
-        return _logger ;
+        return SpdLogPack::_logger ;
     }
 }
