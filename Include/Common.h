@@ -18,6 +18,10 @@
 #define ROTATING_MODE 2
 #define ASYNC_MODE 3
 
-
+enum Exception
+{
+    OK = 0,
+    INIT_EER = 1
+};
 
 #endif
