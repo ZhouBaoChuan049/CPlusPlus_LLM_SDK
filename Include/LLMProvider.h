@@ -33,6 +33,14 @@ namespace Cplusplus_LLM_Provider
         {
             return _IsAvailable ;
         }
+        std::string GetAPIAccessAddress()
+        {
+            return _APIAccessAddress ;
+        }
+        std::string GetApiKey()
+        {
+            return _ApiKey ;
+        }
     private:
         bool _IsAvailable ;
         std::string _ApiKey ;

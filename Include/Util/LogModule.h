@@ -22,7 +22,7 @@ namespace LogModule
 #define DEBUG(format, ...) SpdLogPack::GetSpdLog()->debug(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
 #define INFO(format, ...) SpdLogPack::GetSpdLog()->info(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
 #define WARNING(format, ...) SpdLogPack::GetSpdLog()->warn(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
-#define ERROR(format, ...) SpdLogPack::GetSpdLog()->err(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
+#define ERROR(format, ...) SpdLogPack::GetSpdLog()->error(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
 #define CRITICAL(format, ...) SpdLogPack::GetSpdLog()->critical(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
 }
 #endif

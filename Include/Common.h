@@ -11,6 +11,7 @@
 #include <spdlog/sinks/stdout_sinks.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/async.h>
+#include <sstream>
 #include <memory>
 #include <unordered_map>
 #define FILE_MODE 0 
@@ -21,7 +22,12 @@
 enum Exception
 {
     OK = 0,
-    INIT_EER = 1
+    INIT_EER ,
+    AVAILABLE_ERR,
+    SERIALIZE_ERR,
+    POST_ERR,
+    DESERIALIZE_ERR,
+    
 };
 
 #endif
