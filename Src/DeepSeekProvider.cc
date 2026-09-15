@@ -19,14 +19,11 @@ namespace Cplusplus_LLM_Provider
             LogModule::CRITICAL("InitModel Fail!{}","_APIAccessAddress NoFind");
             exit(Exception::INIT_EER);
         }
-        else SetApiKey(Config["_APIAccessAddress"]);
+        else SetAPIAccessAddress(Config["_APIAccessAddress"]);
         SetAvailable(true);
     }
-    bool DeepSeekProvider::IsModelAvailable()
-    {
-        return GetAvailable() ;
-    }
-    std::string DeepSeekProvider::GetModelName()
+
+    std::string DeepSeekProvider::GetModelName() 
     {
         return "DeepSeekv4flash" ;
     }
@@ -39,14 +36,17 @@ namespace Cplusplus_LLM_Provider
         if(!GetAvailable())
         {
             LogModule::CRITICAL("DeepSeek Model is not available!");
-            exit(AVAILABLE_ERR);
+            std::string Excepts("DeepSeek Model is not available");
+            throw Excepts;
+            //exit(AVAILABLE_ERR);
         }
+        return true ;
     }
     std::string DeepSeekProvider::Serialize(std::vector<CppAiChatSdk::Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms)
     {
         std::string model = "" ;
-        int temperature = 0 ;
+        double temperature = 0.0 ;
         bool stream = false;
         int Max_token = 0 ;
         if(RequestPrograms.find("model") != RequestPrograms.end())
@@ -82,7 +82,9 @@ namespace Cplusplus_LLM_Provider
         if(CheckWrite != 0)
         {
             LogModule::ERROR("Json Writer fail!");
-            exit(SERIALIZE_ERR);
+            std::string Excepts("Json Writer fail");
+            throw Excepts;
+            //exit(SERIALIZE_ERR);
         }
         return ss.str() ; 
     }
@@ -103,24 +105,28 @@ namespace Cplusplus_LLM_Provider
         httplib::Result answer = client.Post("/chat/completions",
              handers, RequestBodyString,
              "application/json");
-        if(answer->status == 200)
+        if(answer != nullptr)
         {
-            LogModule::INFO("Get Response Success!");
-            std::cout<<"The Response Status is:["
-                << answer->status<<"]"<<std::endl;
-            std::cout<<"The Response Body is:["
-                << answer->body<<"]"<<std::endl;
-        }
-        else if(answer->status != 200)
-        {
-            LogModule::ERROR("Post Get Response Fail!");
-            exit(POST_ERR);
+            if(answer->status == 200)
+            {
+                LogModule::INFO("Get Response Success!");
+                std::cout<<"The Response Status is:["
+                    << answer->status<<"]"<<std::endl;
+                std::cout<<"The Response Body is:["
+                    << answer->body<<"]"<<std::endl;
+            }
+            else if(answer->status != 200)
+            {
+                LogModule::ERROR("Post Get Response Fail!");
+                std::string Except("Post Get Response Fail");
+                throw Except;
+                //exit(POST_ERR);
+            }
         }
         return answer ;
     }
-    Json::Value Deserialize(std::string ResponseString)
+    Json::Value DeepSeekProvider::Deserialize(std::string& ResponseString)
     {
-        std::string ResponseString = ResponseString;
         Json::CharReaderBuilder readbuilder ;
         std::unique_ptr<Json::CharReader> reader
             (readbuilder.newCharReader());
@@ -132,7 +138,9 @@ namespace Cplusplus_LLM_Provider
         if(!CheckParse)
         {
             LogModule::ERROR("Deserialize fail!");
-            exit(DESERIALIZE_ERR);
+            std::string Except("Deserialize fail");
+            throw Except;
+            //exit(DESERIALIZE_ERR);
         }
         return Response ;
     }
@@ -143,7 +151,16 @@ namespace Cplusplus_LLM_Provider
         IsModelAvailable();
         std::string RequestBodyString = Serialize(messages , RequestPrograms);
         httplib::Result answer = SendRequestMessage(RequestBodyString);
-        Json::Value Response = Deserialize(answer->body);
+        Json::Value Response ;
+        if(answer != nullptr)
+            Response= Deserialize(answer->body);
+        else
+        {
+            LogModule::ERROR("Post Get Response Fail!");
+            std::string Except("Post Get Response Fail");
+            throw Except;
+            //exit(POST_ERR);
+        }
         //最后一层一层把content剥出来
         if(Response.isMember("choices") &&
            Response["choices"].isArray() &&
@@ -159,7 +176,8 @@ namespace Cplusplus_LLM_Provider
                 }
             }
         }
-        return "None";
+        return "";
     }
-    std::string SendMessagesAsStream();  
+    std::string DeepSeekProvider::SendMessagesAsStream()
+    {} 
 }

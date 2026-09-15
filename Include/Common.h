@@ -23,11 +23,10 @@ enum Exception
 {
     OK = 0,
     INIT_EER ,
-    AVAILABLE_ERR,
-    SERIALIZE_ERR,
-    POST_ERR,
-    DESERIALIZE_ERR,
-    
+    // AVAILABLE_ERR,
+    // SERIALIZE_ERR,
+    // POST_ERR,
+    // DESERIALIZE_ERR,
 };
 
 #endif

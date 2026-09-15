@@ -8,15 +8,19 @@ namespace Cplusplus_LLM_Provider
     {
     public:
         LLMProvider()
+            :_IsAvailable(false),
+             _ApiKey(""),
+             _APIAccessAddress("")
         {}
-        ~LLMProvider()
-        {}
-        virtual void InitModel() = 0;
+        virtual ~LLMProvider() = default ;
+        virtual void InitModel(std::unordered_map<std::string,std::string> Config) = 0;
         virtual bool IsModelAvailable() = 0;
         virtual std::string GetModelName() = 0;
         virtual std::string GetModelDescription() = 0;
-        virtual std::string SendMessages() = 0;
+        virtual std::string SendMessages(std::vector<CppAiChatSdk::Message>& messages,
+             std::unordered_map<std::string,std::string>& RequestPrograms) = 0;
         virtual std::string SendMessagesAsStream() = 0;
+    protected:
         void SetApiKey(std::string& ApiKey)
         {
             _ApiKey = ApiKey ;
@@ -29,17 +33,17 @@ namespace Cplusplus_LLM_Provider
         {
             _IsAvailable = IsAvailable ;
         }
-        bool GetAvailable()
+        std::string GetApiKey()
         {
-            return _IsAvailable ;
+            return _ApiKey ;
         }
         std::string GetAPIAccessAddress()
         {
             return _APIAccessAddress ;
         }
-        std::string GetApiKey()
+        bool GetAvailable()
         {
-            return _ApiKey ;
+            return _IsAvailable ;
         }
     private:
         bool _IsAvailable ;
@@ -47,6 +51,5 @@ namespace Cplusplus_LLM_Provider
         std::string _APIAccessAddress ;
     };
 }
-
 
 #endif

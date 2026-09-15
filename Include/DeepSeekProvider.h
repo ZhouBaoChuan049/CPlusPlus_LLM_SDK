@@ -1,4 +1,4 @@
-#ifndef __SEEPSEEK_LLMPROVIDER__
+#ifndef __DEEPSEEK_LLMPROVIDER__
 #define __DEEPSEEK_LLMPROVIDER__
 #include "Common.h"
 #include "LLMProvider.h"
@@ -9,19 +9,20 @@ namespace Cplusplus_LLM_Provider
     class DeepSeekProvider : public LLMProvider
     {
     public:
-        void InitModel(std::unordered_map<std::string,std::string> Config);
-        bool IsModelAvailable();
-        std::string GetModelName();
-        std::string GetModelDescription();
+        DeepSeekProvider() = default;
+        ~DeepSeekProvider() override = default;
+        void InitModel(std::unordered_map<std::string,std::string> Config)override;
+        std::string GetModelName()override;
+        std::string GetModelDescription()override;
         std::string SendMessages(std::vector<CppAiChatSdk::Message>& messages,
-             std::unordered_map<std::string,std::string>& RequestPrograms);
-        std::string SendMessagesAsStream();    
+             std::unordered_map<std::string,std::string>& RequestPrograms)override;
+        std::string SendMessagesAsStream()override;    
     private:
-        bool IsModelAvailable();
+        bool IsModelAvailable() override;
         std::string Serialize(std::vector<CppAiChatSdk::Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms);
         httplib::Result SendRequestMessage(std::string& RequestBodyString);
-        Json::Value Deserialize(std::string ResponseString);
+        Json::Value Deserialize(std::string& ResponseString);
     };
 }
 
