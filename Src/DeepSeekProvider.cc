@@ -1,8 +1,7 @@
 #include "../Include/Common.h"
 #include "../Include/Util/LogModule.h"
 #include "../Include/DeepSeekProvider.h"
-#include <jsoncpp/json/json.h>
-#include "../Third_Party/Httplib/httplib.h"
+
 namespace Cplusplus_LLM_Provider
 {
     void DeepSeekProvider::InitModel(std::unordered_map<std::string,std::string> Config)
@@ -104,7 +103,17 @@ namespace Cplusplus_LLM_Provider
         //发送，发送的时候自带合成请求行 ，同时获取到响应报文
         httplib::Result answer = client.Post("/chat/completions",
              handers, RequestBodyString,
-             "application/json");
+             "application/json");  
+        if(answer == nullptr)
+        {
+            std::cerr << "HTTP Request Error: "
+                    << httplib::to_string(answer.error())
+                    << std::endl;
+
+            LogModule::ERROR("Post Request Failed!");
+
+            return answer;
+        }
         if(answer != nullptr)
         {
             if(answer->status == 200)

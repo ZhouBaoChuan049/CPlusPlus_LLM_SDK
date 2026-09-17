@@ -1,6 +1,7 @@
 #ifndef __LLMPROVIDER__
 #define __LLMPROVIDER__
 #include "Common.h"
+#include "CommonStruct.h"
 
 namespace Cplusplus_LLM_Provider
 {

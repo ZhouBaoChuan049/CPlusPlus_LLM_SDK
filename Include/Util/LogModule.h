@@ -9,14 +9,14 @@ namespace LogModule
     public:
         SpdLogPack() = delete ;
         SpdLogPack(SpdLogPack& spdlog) = delete ;
-        void SpdLogInit(std::string logname,std::string filename, 
+        static void SpdLogInit(std::string logname,std::string filename, 
             spdlog::level::level_enum loglevel = spdlog::level::info
             ,  int mode = FILE_MODE) ;
         static std::shared_ptr<spdlog::logger> GetSpdLog() ;
         
     private:
         static std::shared_ptr<spdlog::logger> _logger ; 
-        std::mutex _mutex;
+        static std::mutex _mutex;
     };
 #define TRACE(format, ...) SpdLogPack::GetSpdLog()->trace(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);
 #define DEBUG(format, ...) SpdLogPack::GetSpdLog()->debug(std::string("[{:>10}][{:<4}]")+format,__FILE__,__LINE__,##__VA_ARGS__);

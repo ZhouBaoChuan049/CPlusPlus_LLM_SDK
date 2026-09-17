@@ -2,12 +2,15 @@
 #include "../../Include/Util/LogModule.h"
 namespace LogModule
 {
+std::shared_ptr<spdlog::logger> SpdLogPack::_logger = nullptr;
+std::mutex SpdLogPack::_mutex;
+
 const size_t MAX_FILE_SIZE = 1024 ; 
 const size_t MAX_FILE_NUMBER = 3 ;
 const size_t THREAD_POOL_SIZE = 8192 ;
     void SpdLogPack::SpdLogInit(std::string logname,std::string filename,
-         spdlog::level::level_enum loglevel = spdlog::level::info, 
-         int mode = FILE_MODE)
+         spdlog::level::level_enum loglevel, 
+         int mode)
     {
         if(nullptr == _logger)
         {

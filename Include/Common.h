@@ -14,6 +14,9 @@
 #include <sstream>
 #include <memory>
 #include <unordered_map>
+#include <cstdlib>
+#include <jsoncpp/json/json.h>
+#include "../Third_Party/Httplib/httplib.h"
 #define FILE_MODE 0 
 #define CONSOLE__MODE 1
 #define ROTATING_MODE 2
