@@ -4,6 +4,7 @@
 
 namespace Cplusplus_LLM_Provider
 {
+const std::string POS = "\n\n";
     void DeepSeekProvider::InitModel(std::unordered_map<std::string,std::string> Config)
     {
         //第一个存名称，第二个存内容
@@ -42,11 +43,11 @@ namespace Cplusplus_LLM_Provider
         return true ;
     }
     std::string DeepSeekProvider::Serialize(std::vector<CppAiChatSdk::Message>& messages,
-             std::unordered_map<std::string,std::string>& RequestPrograms)
+             std::unordered_map<std::string,std::string>& RequestPrograms, bool isstream)
     {
         std::string model = "" ;
         double temperature = 0.0 ;
-        bool stream = false;
+        bool stream = isstream;
         int Max_token = 0 ;
         if(RequestPrograms.find("model") != RequestPrograms.end())
             model = RequestPrograms["model"] ; 
@@ -87,18 +88,22 @@ namespace Cplusplus_LLM_Provider
         }
         return ss.str() ; 
     }
+    httplib::Client DeepSeekProvider::CreateClient(int commect_timeout , int read_timeout)
+    {
+        httplib::Client client(GetAPIAccessAddress());
+        client.set_connection_timeout(commect_timeout,0);
+        client.set_read_timeout(read_timeout,0);
+        return client ;
+    }
     httplib::Result DeepSeekProvider::SendRequestMessage(std::string& RequestBodyString)
     {
         //然后构建一个轻量化的客户端
-        httplib::Client client(GetAPIAccessAddress());
-        client.set_connection_timeout(30,0);
-        client.set_read_timeout(60,0);
-
+        httplib::Client client = CreateClient(30 , 60); 
         //"Authorization: Bearer ${DEEPSEEK_API_KEY}"
         //构建请求报头
         httplib::Headers handers = {
             {"Content-Type" , "application/json"},
-            {"Authorization" , "Bearer "+GetApiKey() }
+            {"Authorization" , "Bearer " + GetApiKey() }
         };
         //发送，发送的时候自带合成请求行 ，同时获取到响应报文
         httplib::Result answer = client.Post("/chat/completions",
@@ -160,11 +165,11 @@ namespace Cplusplus_LLM_Provider
     {
         //判断一下我们的这个模型有没有转起来。
         IsModelAvailable();
-        std::string RequestBodyString = Serialize(messages , RequestPrograms);
+        std::string RequestBodyString = Serialize(messages , RequestPrograms, false);
         httplib::Result answer = SendRequestMessage(RequestBodyString);
         Json::Value Response ;
         if(answer != nullptr)
-            Response= Deserialize(answer->body);
+            Response = Deserialize(answer->body);
         else
         {
             LogModule::ERROR("Post Get Response Fail!");
@@ -190,8 +195,143 @@ namespace Cplusplus_LLM_Provider
         }
         return "";
     }
-    std::string DeepSeekProvider::SendMessagesAsStream()
+    std::string DeepSeekProvider::SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
+            std::unordered_map<std::string, std::string>& RequestPrograms,
+            func_t callback)
     {
-        return "";
+        //检查模型有没有起来
+        IsModelAvailable();
+        //构建请求报文的主体部分
+        std::string RequestBodyString = Serialize(messages , RequestPrograms, true);
+        //客户端，流式请求，发送等待可以长一点
+        httplib::Client client = CreateClient(60 , 300); 
+        //报头信息
+        httplib::Headers TheHanders = {
+            {"Content-Type" , "application/json"},
+            {"Authorization" , "Bearer " + GetApiKey() },
+            {"Accept" , "text/event-stream"}
+        };
+        
+        httplib::Request request ;
+        request.method = "POST" ;
+        request.path = "/chat/completions" ;
+        request.headers = TheHanders ;
+        request.body = RequestBodyString ;
+        //std::function<bool(const Response &response)>
+
+        //相关的一些处理参数
+        bool ERROR_STATUS = false ;
+        std::string ERROR_DESCRIPTION = "" ;
+        std::string AllResponse ;
+        std::string buffer ;
+        request.response_handler = [&](const httplib::Response &response)->bool{
+            if(response.status != 200)
+            {
+                ERROR_STATUS = true;
+                ERROR_DESCRIPTION = 
+                    "发送出去了，收到的是错误的,错误码:"+ 
+                        std::to_string(response.status);
+                LogModule::ERROR(ERROR_DESCRIPTION);
+                return false ;
+            }
+            return true ;
+        };
+    //     using ContentReceiverWithProgress = std::function<bool(
+    // const char *data, size_t data_length, size_t offset, size_t total_length)>;
+        request.content_receiver = [&](
+            const char *data, 
+            size_t len, 
+            size_t offset, 
+            size_t alllen
+        )->bool{
+            // data:{
+            //     choices:[{
+            //             delta:{
+            //                 content: "Hello"
+            //                 role: "assistant"
+            //             }
+            //         }
+            //     ]
+            // }
+            //从接收缓冲区读上来
+            std::string RecdBuffer(data);
+            buffer += RecdBuffer.substr(0 , len);
+            //分析出一段完整的SSE报文
+            size_t sep_message = buffer.find(POS);
+            std::string trunk ;
+            if(sep_message != buffer.npos)
+            {
+                trunk = buffer.substr(0 , sep_message);
+                buffer.erase(0,sep_message + POS.size());
+            }
+            size_t sep_word = trunk.find("data:");
+            size_t end_point = trunk.find(
+                "\n" , 
+                sep_word 
+            ); 
+            std::string DataString = trunk.substr(
+                sep_word + (buffer[sep_word+5] == ' ' ? 1 : 0),//跳过空格
+                end_point - sep_word
+            );
+            if(DataString == "[DONE]")
+            {
+                LogModule::INFO("响应报文读取正常结束![DONE]");
+                callback("[DONE]",false);
+                return false ;
+            }
+            //反序列化:
+            Json::Value DataJson ;
+            std::string Error ;
+            Json::CharReaderBuilder builder ;
+            std::unique_ptr<Json::CharReader> reader = 
+                std::make_unique<Json::CharReader>
+                    (builder.newCharReader());
+            int check = reader->parse(
+                DataString.c_str(),
+                DataString.c_str() + DataString.size(),
+                &DataJson,
+                &Error 
+            );//data: [DONE]
+            if(!check)
+            {
+                LogModule::ERROR("Deserialize fail!");
+                std::string Except("Deserialize fail");
+                throw Except;
+            }
+            if(DataJson.isObject()&&
+               !DataJson.empty()&&
+                 DataJson.isMember("choices")){
+                if(DataJson["choices"].isArray()&&
+                   !DataJson["choices"].empty()&&
+                     DataJson["choices"].isMember("delta")){
+                    if(DataJson["choices"]["delta"].isObject()&&
+                        !DataJson["choices"]["delta"].empty()&&
+                         DataJson["choices"]["delta"].isMember("content")){
+                        if(DataJson["choices"]["delta"]["content"].isString()&&
+                            !DataJson["choices"]["delta"]["content"].empty()){
+                                AllResponse += 
+                                    DataJson["choices"]["delta"]["content"].asString() ;
+                                callback(
+                                    DataJson["choices"]["delta"]["content"].asString(),
+                                    true
+                                );
+                                return true; 
+                            }
+                         }
+                }
+            }
+        };
+        //httplib::Result 里面重载了类型转换器.
+        bool result = client.send(request);
+        if(result == false)
+        {
+            //报文根本没有发出去！
+            if(ERROR_STATUS)
+            {
+                LogModule::CRITICAL("状态错误!");
+                return "";
+            }
+        }
+        return AllResponse ;
     } 
 }

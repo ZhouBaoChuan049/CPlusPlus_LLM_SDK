@@ -5,6 +5,7 @@
 
 namespace Cplusplus_LLM_Provider
 {
+using func_t = std::function<void(std::string , bool)>;
     class LLMProvider
     {
     public:
@@ -20,7 +21,9 @@ namespace Cplusplus_LLM_Provider
         virtual std::string GetModelDescription() = 0;
         virtual std::string SendMessages(std::vector<CppAiChatSdk::Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms) = 0;
-        virtual std::string SendMessagesAsStream() = 0;
+        virtual std::string SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
+            std::unordered_map<std::string, std::string>& RequestPrograms,
+            func_t callback) = 0;
     protected:
         void SetApiKey(std::string& ApiKey)
         {

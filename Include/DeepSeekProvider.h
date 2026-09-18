@@ -5,7 +5,7 @@
 #include "CommonStruct.h"
 namespace Cplusplus_LLM_Provider
 {
-//class LLMProvider
+
     class DeepSeekProvider : public LLMProvider
     {
     public:
@@ -15,14 +15,17 @@ namespace Cplusplus_LLM_Provider
         std::string GetModelName()override;
         std::string GetModelDescription()override;
         std::string SendMessages(std::vector<CppAiChatSdk::Message>& messages,
-             std::unordered_map<std::string,std::string>& RequestPrograms)override;
-        std::string SendMessagesAsStream()override;    
+            std::unordered_map<std::string,std::string>& RequestPrograms)override;
+        std::string SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
+            std::unordered_map<std::string, std::string>& RequestPrograms,
+            func_t callback)override;    
     private:
         bool IsModelAvailable() override;
         std::string Serialize(std::vector<CppAiChatSdk::Message>& messages,
-             std::unordered_map<std::string,std::string>& RequestPrograms);
+             std::unordered_map<std::string,std::string>& RequestPrograms,bool isstream);
         httplib::Result SendRequestMessage(std::string& RequestBodyString);
         Json::Value Deserialize(std::string& ResponseString);
+        httplib::Client CreateClient(int commect_timeout , int read_timeout);
     };
 }
 

@@ -15,6 +15,7 @@
 #include <memory>
 #include <unordered_map>
 #include <cstdlib>
+#include <functional>
 #include <jsoncpp/json/json.h>
 #include "../Third_Party/Httplib/httplib.h"
 #define FILE_MODE 0 
