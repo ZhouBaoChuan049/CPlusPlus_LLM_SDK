@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(TestDeepSeek
-    DeepseekTest.cc
+    DeepseekTestStream.cc   #DeepseekTestSend.cc
     ../../Src/Util/LogModule.cc
     ../../Src/DeepSeekProvider.cc
 )

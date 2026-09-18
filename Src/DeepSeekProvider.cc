@@ -224,6 +224,8 @@ const std::string POS = "\n\n";
         std::string ERROR_DESCRIPTION = "" ;
         std::string AllResponse ;
         std::string buffer ;
+        bool StringEndERR = true ;
+
         request.response_handler = [&](const httplib::Response &response)->bool{
             if(response.status != 200)
             {
@@ -244,6 +246,8 @@ const std::string POS = "\n\n";
             size_t offset, 
             size_t alllen
         )->bool{
+            if(ERROR_STATUS)
+                return false ;
             // data:{
             //     choices:[{
             //             delta:{
@@ -276,8 +280,8 @@ const std::string POS = "\n\n";
             if(DataString == "[DONE]")
             {
                 LogModule::INFO("响应报文读取正常结束![DONE]");
-                callback("[DONE]",false);
-                return false ;
+                StringEndERR = false ;
+                callback("[DONE]",true);
             }
             //反序列化:
             Json::Value DataJson ;
@@ -313,9 +317,8 @@ const std::string POS = "\n\n";
                                     DataJson["choices"]["delta"]["content"].asString() ;
                                 callback(
                                     DataJson["choices"]["delta"]["content"].asString(),
-                                    true
+                                    false
                                 );
-                                return true; 
                             }
                          }
                 }
@@ -329,8 +332,13 @@ const std::string POS = "\n\n";
             if(ERROR_STATUS)
             {
                 LogModule::CRITICAL("状态错误!");
-                return "";
+                callback("" , true);
             }
+        }
+        if(StringEndERR)
+        {
+            LogModule::ERROR("接收的报文在没有收到[DONE]的情况下异常结束!");
+            callback("" , true);
         }
         return AllResponse ;
     } 
