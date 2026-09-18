@@ -111,7 +111,6 @@ namespace Cplusplus_LLM_Provider
                     << std::endl;
 
             LogModule::ERROR("Post Request Failed!");
-
             return answer;
         }
         if(answer != nullptr)
@@ -151,6 +150,9 @@ namespace Cplusplus_LLM_Provider
             throw Except;
             //exit(DESERIALIZE_ERR);
         }
+        // std::cout << "Deserialize Response:\n"
+        //   << Response.toStyledString()
+        //   << std::endl;
         return Response ;
     }
     std::string DeepSeekProvider::SendMessages(std::vector<CppAiChatSdk::Message>& messages,
@@ -177,10 +179,11 @@ namespace Cplusplus_LLM_Provider
             for(int i = 0 ; i < Response["choices"].size(); i++){
                 if(Response["choices"][i].isMember("message")&&
                     Response["choices"][i].isObject()&&
-                    !Response["choices"][i].empty()){
-                    if(Response["choices"][i]["message"].isMember("content")&&
-                        Response["choices"][i]["message"].isString()&&
-                        !Response["choices"][i]["message"].empty())
+                    !Response["choices"][i].empty()){//应答不一定在"content"里面，——>"reasoning_content"
+                    if((Response["choices"][i]["message"].isMember("content") || 
+                         Response["choices"][i]["message"].isMember("reasoning_content"))&&
+                          Response["choices"][i]["message"]["content"].isString()&&
+                          !Response["choices"][i]["message"]["content"].empty())
                     return Response["choices"][i]["message"]["content"].asString() ;
                 }
             }
@@ -188,5 +191,7 @@ namespace Cplusplus_LLM_Provider
         return "";
     }
     std::string DeepSeekProvider::SendMessagesAsStream()
-    {} 
+    {
+        return "";
+    } 
 }

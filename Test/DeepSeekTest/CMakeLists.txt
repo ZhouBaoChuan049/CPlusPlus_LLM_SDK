@@ -16,28 +16,15 @@ add_executable(TestDeepSeek
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 find_package(Threads REQUIRED)
+find_package(OpenSSL REQUIRED)
 
 # 项目头文件
 include_directories(../../Include)
 
-
-
-set(OPENSSL3_ROOT "$ENV{HOME}/local/openssl-3.0.18")
-
-include_directories(
-    ${OPENSSL3_ROOT}/include
-)
-
-target_compile_definitions(
-    TestDeepSeek
+target_compile_definitions(TestDeepSeek
     PRIVATE
     CPPHTTPLIB_OPENSSL_SUPPORT
 )
-
-set_target_properties(TestDeepSeek PROPERTIES
-    BUILD_RPATH "${OPENSSL3_ROOT}/lib64"
-)
-
 
 target_link_libraries(TestDeepSeek
     jsoncpp
@@ -46,9 +33,6 @@ target_link_libraries(TestDeepSeek
     gtest
     sqlite3
     Threads::Threads
-
-    ${OPENSSL3_ROOT}/lib64/libssl.so
-    ${OPENSSL3_ROOT}/lib64/libcrypto.so
+    OpenSSL::SSL
+    OpenSSL::Crypto
 )
-
-

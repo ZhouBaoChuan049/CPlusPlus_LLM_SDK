@@ -1,7 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/TestDeepSeek.dir/DeepseekTest.cc.o"
-  "CMakeFiles/TestDeepSeek.dir/home/zbc/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc.o"
-  "CMakeFiles/TestDeepSeek.dir/home/zbc/Project/CPlusPlus_LLM_SDK/Src/Util/LogModule.cc.o"
+  "CMakeFiles/TestDeepSeek.dir/DeepseekTest.cc.o.d"
+  "CMakeFiles/TestDeepSeek.dir/home/konata/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc.o"
+  "CMakeFiles/TestDeepSeek.dir/home/konata/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc.o.d"
+  "CMakeFiles/TestDeepSeek.dir/home/konata/Project/CPlusPlus_LLM_SDK/Src/Util/LogModule.cc.o"
+  "CMakeFiles/TestDeepSeek.dir/home/konata/Project/CPlusPlus_LLM_SDK/Src/Util/LogModule.cc.o.d"
   "TestDeepSeek"
   "TestDeepSeek.pdb"
 )

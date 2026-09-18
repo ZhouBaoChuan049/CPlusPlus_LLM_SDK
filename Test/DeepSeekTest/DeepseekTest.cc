@@ -12,6 +12,7 @@ TEST(DeepSeekProviderTest , SendMessageTest)
     ASSERT_FALSE(provider == nullptr);
     
     std::unordered_map<std::string ,std::string> Config;
+    Config["model"] = "deepseek-flash";
     Config["_ApiKey"] = getenv("deepseek_apikey") ;
     Config["_APIAccessAddress"] = "https://api.deepseek.com" ;
     provider->InitModel(Config);
@@ -21,12 +22,13 @@ TEST(DeepSeekProviderTest , SendMessageTest)
     std::cout<<provider->GetModelDescription()<<std::endl;
 
     std::vector<CppAiChatSdk::Message> messages;
-    messages.push_back({"user" , "你好!请告诉我你的名字!"});
-    messages.push_back({"user" , "你好!请为我介绍红烧肉的做法!"}); 
+    //messages.push_back({"user" , "你好!请告诉我你的名字!"});
+    messages.push_back({"user" , "你好!请介绍你自己!"}); 
     
     std::unordered_map<std::string,std::string> RequestPrograms;
-    RequestPrograms["temperatore"] = "1.2";
-    RequestPrograms["Max_token"] = "2048";
+    RequestPrograms["temperature"] = "1.2";
+    RequestPrograms["Max_token"] = "512";
+    RequestPrograms["model"] = "deepseek-flash";
 
     std::string response = provider->SendMessages(messages , RequestPrograms);
     ASSERT_FALSE(response.empty());
