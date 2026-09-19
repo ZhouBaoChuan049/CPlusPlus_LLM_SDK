@@ -4,7 +4,6 @@
 
 namespace Cplusplus_LLM_Provider
 {
-const std::string POS = "\n\n";
     void DeepSeekProvider::InitModel(std::unordered_map<std::string,std::string> Config)
     {
         //第一个存名称，第二个存内容

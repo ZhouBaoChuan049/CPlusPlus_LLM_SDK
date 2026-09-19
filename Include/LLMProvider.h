@@ -6,6 +6,7 @@
 namespace Cplusplus_LLM_Provider
 {
 using func_t = std::function<void(std::string , bool)>;
+const std::string POS = "\n\n";
     class LLMProvider
     {
     public:

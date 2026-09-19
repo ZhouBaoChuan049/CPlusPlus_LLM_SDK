@@ -5,7 +5,6 @@
 #include "CommonStruct.h"
 namespace Cplusplus_LLM_Provider
 {
-
     class DeepSeekProvider : public LLMProvider
     {
     public:
