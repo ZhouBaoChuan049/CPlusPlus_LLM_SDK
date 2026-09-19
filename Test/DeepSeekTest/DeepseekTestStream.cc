@@ -24,7 +24,7 @@ TEST(DeepSeekProviderTest , SendMessageTest)
 
     std::unordered_map<std::string,std::string> RequestPrograms;
     RequestPrograms["temperature"] = "1.2";
-    RequestPrograms["Max_token"] = "512";
+    RequestPrograms["Max_token"] = "4096";
     RequestPrograms["model"] = "deepseek-flash";
 
     // std::string SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
@@ -36,7 +36,7 @@ TEST(DeepSeekProviderTest , SendMessageTest)
         RequestPrograms,
         [](std::string content , bool least){
             if(least)
-                return false ;
+                return ;
             LogModule::INFO(content);
         }
     );
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     ::testing::InitGoogleTest(&argc , argv);
     LogModule::SpdLogPack::SpdLogInit("GoogleTestLog",
                           "TestLogFile.dat",
-                           spdlog::level::info,
+                           spdlog::level::debug,
                            CONSOLE__MODE);
     return RUN_ALL_TESTS();
 }

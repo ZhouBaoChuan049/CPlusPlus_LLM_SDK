@@ -222,7 +222,7 @@ const std::string POS = "\n\n";
         //相关的一些处理参数
         bool ERROR_STATUS = false ;
         std::string ERROR_DESCRIPTION = "" ;
-        std::string AllResponse ;
+        std::string AllResponse = "" ;
         std::string buffer ;
         bool StringEndERR = true ;
 
@@ -248,81 +248,107 @@ const std::string POS = "\n\n";
         )->bool{
             if(ERROR_STATUS)
                 return false ;
-            // data:{
-            //     choices:[{
-            //             delta:{
-            //                 content: "Hello"
-            //                 role: "assistant"
-            //             }
-            //         }
-            //     ]
-            // }
+            // data:{ choices:[{ delta:{ content: "Hello" role: "assistant" } } ] }
             //从接收缓冲区读上来
-            std::string RecdBuffer(data);
-            buffer += RecdBuffer.substr(0 , len);
+            std::string RecvBuffer(data,len);
+            buffer += RecvBuffer ;
             //分析出一段完整的SSE报文
+
             size_t sep_message = buffer.find(POS);
-            std::string trunk ;
-            if(sep_message != buffer.npos)
+            while(sep_message != std:: string:: npos)
             {
+                std::string trunk ;
                 trunk = buffer.substr(0 , sep_message);
                 buffer.erase(0,sep_message + POS.size());
-            }
-            size_t sep_word = trunk.find("data:");
-            size_t end_point = trunk.find(
-                "\n" , 
-                sep_word 
-            ); 
-            std::string DataString = trunk.substr(
-                sep_word + (buffer[sep_word+5] == ' ' ? 1 : 0),//跳过空格
-                end_point - sep_word
-            );
-            if(DataString == "[DONE]")
-            {
-                LogModule::INFO("响应报文读取正常结束![DONE]");
-                StringEndERR = false ;
-                callback("[DONE]",true);
-            }
-            //反序列化:
-            Json::Value DataJson ;
-            std::string Error ;
-            Json::CharReaderBuilder builder ;
-            std::unique_ptr<Json::CharReader> reader = 
-                std::make_unique<Json::CharReader>
-                    (builder.newCharReader());
-            int check = reader->parse(
-                DataString.c_str(),
-                DataString.c_str() + DataString.size(),
-                &DataJson,
-                &Error 
-            );//data: [DONE]
-            if(!check)
-            {
-                LogModule::ERROR("Deserialize fail!");
-                std::string Except("Deserialize fail");
-                throw Except;
-            }
-            if(DataJson.isObject()&&
-               !DataJson.empty()&&
-                 DataJson.isMember("choices")){
-                if(DataJson["choices"].isArray()&&
-                   !DataJson["choices"].empty()&&
-                     DataJson["choices"].isMember("delta")){
-                    if(DataJson["choices"]["delta"].isObject()&&
-                        !DataJson["choices"]["delta"].empty()&&
-                         DataJson["choices"]["delta"].isMember("content")){
-                        if(DataJson["choices"]["delta"]["content"].isString()&&
-                            !DataJson["choices"]["delta"]["content"].empty()){
-                                AllResponse += 
-                                    DataJson["choices"]["delta"]["content"].asString() ;
-                                callback(
-                                    DataJson["choices"]["delta"]["content"].asString(),
-                                    false
-                                );
-                            }
-                         }
+                //我能保证我读取到的报文是完整的.
+                size_t sep_word = trunk.find("data:");
+
+                
+                if(sep_word == std::string::npos)
+                {
+                    sep_message = buffer.find(POS);
+                    continue ;
                 }
+                size_t end_point = trunk.find(
+                    "\n" , 
+                    sep_word 
+                ); 
+                // std::cout << "trunk = [" << trunk << "]" << std::endl;
+                // std::cout << "sep_word = " << sep_word << std::endl;
+                // std::cout << "end_point = " << end_point << std::endl;
+                std::string DataString = trunk.substr(
+                    sep_word + 5 + (trunk[sep_word+5] == ' ' ? 1 : 0)
+                );
+                //如果这个data是整个报文的最后一个字段，那么这个data后面就不会有\n，进一步判断是不是[DONE]
+                if(end_point == std::string::npos && DataString == "[DONE]")
+                {
+                    //可能是[DONE]
+                    LogModule::INFO("响应报文读取正常结束![DONE]");
+                    StringEndERR = false ;
+                    AllResponse += "[DONE]";
+                    callback("[DONE]",true);
+                    return false ;
+                }
+                else
+                {
+                    //如果这个data是整个报文的最后一个字段并且不是[DONE]走这里。
+                    //那么我想，照理说是不需要再次分割的，但是这段逻辑是考虑到data不是整个报文的最后一个字段的时候。
+                    DataString = trunk.substr(
+                        sep_word + 5 + (trunk[sep_word+5] == ' ' ? 1 : 0),//跳过空格
+                        end_point - sep_word - 6
+                    );
+                    //反序列化:
+                    Json::Value DataJson ;
+                    std::string Error ;
+                    Json::CharReaderBuilder builder ;
+                    std::unique_ptr<Json::CharReader> reader
+                            (builder.newCharReader());
+                    //debug:
+                    std::cout<<DataString<<std::endl;
+                    
+                    int check = reader->parse(
+                        DataString.c_str(),
+                        DataString.c_str() + DataString.size(),
+                        &DataJson,
+                        &Error 
+                    );//data: [DONE]
+                    if(!check)
+                    {
+                        LogModule::ERROR("Deserialize fail!" + Error);
+                        std::string Except("Deserialize fail");
+                        throw Except;
+                    }
+                    //std::cout<<"[Debug]:"<<DataJson.toStyledString()<<std::endl;
+                    if(DataJson.isObject()&&
+                    !DataJson.empty()&&
+                        DataJson.isMember("choices")){
+                        if(DataJson["choices"].isArray()&&
+                        !DataJson["choices"].empty()){
+                            if(DataJson["choices"][0].isObject()&&
+                                DataJson["choices"][0].isMember("delta")){
+                                if(DataJson["choices"][0]["delta"].isObject()&&
+                                    !DataJson["choices"][0]["delta"].empty()&&
+                                        DataJson["choices"][0]["delta"].isMember("content")){
+                                            if(DataJson["choices"][0]["delta"]["content"].isString())
+                                            {
+                                                std::string Content = 
+                                                    DataJson["choices"][0]["delta"]["content"].asString() ;
+                                                    if(!Content.empty())
+                                                    {
+                                                        AllResponse += Content;
+                                                        //LogModule::DEBUG("有没有成功调用到回调函数");
+                                                        callback(Content, false);
+                                                    }
+                                            }
+
+                                    }
+                                }
+                        }
+                    }
+                }
+                sep_message = buffer.find(POS);
             }
+            return true ;
         };
         //httplib::Result 里面重载了类型转换器.
         bool result = client.send(request);
@@ -333,6 +359,7 @@ const std::string POS = "\n\n";
             {
                 LogModule::CRITICAL("状态错误!");
                 callback("" , true);
+                return "";
             }
         }
         if(StringEndERR)
