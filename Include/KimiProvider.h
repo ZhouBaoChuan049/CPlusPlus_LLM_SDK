@@ -20,7 +20,13 @@ namespace Cplusplus_LLM_Provider
             func_t callback)override;    
     private:
         bool IsModelAvailable() override;
+        std::string Serialize(
+            std::vector<CppAiChatSdk::Message>& messages,
+            std::unordered_map<std::string,std::string>& RequestPrograms,
+            bool isstream);
+        httplib::Result SendRequestMessage(std::string& RequestBodyString);
+        Json::Value Deserialize(std::string& ResponseString);
+        httplib::Client CreateClient(int commect_timeout , int read_timeout);
     };
 }
-
 #endif
