@@ -12,7 +12,6 @@ TEST(ChatGptProviderTest , SendMessageTest)
     ASSERT_FALSE(provider == nullptr);
     
     std::unordered_map<std::string ,std::string> Config;
-    Config["model"] = "gpt-5.4";
     Config["_ApiKey"] = getenv("chatgpt_apikey") ;
     //https://leapone.leapinfra.cn
     Config["_APIAccessAddress"] = "https://leapone.leapinfra.cn" ; //走中转站
@@ -28,9 +27,9 @@ TEST(ChatGptProviderTest , SendMessageTest)
     messages.push_back({"user" , "你好!请介绍你自己!"}); 
     
     std::unordered_map<std::string,std::string> RequestPrograms;
-    RequestPrograms["temperature"] = "1.2";
+    RequestPrograms["temperature"] = "1";
     RequestPrograms["max_output_tokens"] = "2048";
-    RequestPrograms["model"] = "gpt-5.5";
+    //RequestPrograms["model"] = "gpt-5.5";//我忽然觉得不应该把模型的选择交给外部管理
 
     std::string response = provider->SendMessages(messages , RequestPrograms);
     ASSERT_FALSE(response.empty());

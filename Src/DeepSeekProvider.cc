@@ -28,7 +28,7 @@ namespace Cplusplus_LLM_Provider
     }
     std::string DeepSeekProvider::GetModelDescription()
     {
-        return "DeepSeek是一款高性能国产大语言模型,擅长代码,推理与通用文本生成.";
+        return "DeepSeekv4flash是一款高性能国产大语言模型,擅长代码,推理与通用文本生成.";
     }
     bool DeepSeekProvider::IsModelAvailable()
     {
@@ -44,12 +44,12 @@ namespace Cplusplus_LLM_Provider
     std::string DeepSeekProvider::Serialize(std::vector<CppAiChatSdk::Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms, bool isstream)
     {
-        std::string model = "" ;
+        std::string model = "deepseek-flash" ;
         double temperature = 0.0 ;
         bool stream = isstream;
         int Max_token = 0 ;
-        if(RequestPrograms.find("model") != RequestPrograms.end())
-            model = RequestPrograms["model"] ; 
+        // if(RequestPrograms.find("model") != RequestPrograms.end())
+        //     model = RequestPrograms["model"] ; 
         if(RequestPrograms.find("temperature") != RequestPrograms.end())
             temperature = std::stod(RequestPrograms["temperature"]) ; 
         if(RequestPrograms.find("Max_token") != RequestPrograms.end())

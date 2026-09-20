@@ -26,7 +26,7 @@ namespace Cplusplus_LLM_Provider
     std::string ChatGPTProvider::GetModelDescription()
     {
         std::string Description = 
-        "GPT-5.4 是 OpenAI 的新一代通用大语言模型，具备较强的复杂推理、\
+        "GPT-5.5 是 OpenAI 的新一代通用大语言模型，具备较强的复杂推理、\
         代码生成、文本理解与任务执行能力。适用于软件开发、技术问答、内容生成、\
         数据分析以及多步骤复杂任务等场景。" ;
         return Description ;
@@ -49,9 +49,9 @@ namespace Cplusplus_LLM_Provider
             msg["content"] = message._Content ;
             BodyMessages.append(msg);
         }
-        std::string _model ;
-        if(RequestPrograms.find("model") != RequestPrograms.end())
-            _model = RequestPrograms["model"];
+        std::string _model = "gpt-5.5";
+        // if(RequestPrograms.find("model") != RequestPrograms.end())
+        //     _model = RequestPrograms["model"];
         double _temperature ;
         if(RequestPrograms.find("temperature") != RequestPrograms.end())
             _temperature = std::stod(RequestPrograms["temperature"]);
@@ -66,7 +66,7 @@ namespace Cplusplus_LLM_Provider
         RequestBody["model"] = _model ;
         RequestBody["temperature"] = _temperature ;
         //RequestBody["max_output_tokens"] = _max_output_tokens ; //走中转不能用这个
-        RequestBody["max_tokens"] = _max_output_tokens ; 
+        RequestBody["max_completion_tokens"] = _max_output_tokens ; 
         Json::StreamWriterBuilder builder ;
         std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
         std::ostringstream ss ;
@@ -124,25 +124,30 @@ namespace Cplusplus_LLM_Provider
             std::string Except("错误!应答报文反序列化错误!");
             throw Except ; 
         }
-        if(ResponseJson.isObject()&&
-            ResponseJson.isMember("output")&&
+        std::cout<<ResponseJson.toStyledString()<<std::endl;
+        if(ResponseJson.isObject() &&
+            ResponseJson.isMember("choices") &&
             !ResponseJson.empty()){
-                if(ResponseJson["output"].isArray()&&
-                   !ResponseJson["output"].empty()){
-                    if(!ResponseJson["output"][0].empty()&&
-                         ResponseJson["output"][0].isObject()&&
-                          ResponseJson["output"][0].isMember("content")){
-                            if(ResponseJson["output"][0]["content"].isObject()&&
-                                !ResponseJson["output"][0]["content"].empty()&&
-                                  ResponseJson["output"][0]["content"].isMember("text")){
-                                    return  ResponseJson["output"][0]["content"]["text"].asString();
-                                  }
+            if(ResponseJson["choices"].isArray() &&
+                !ResponseJson["choices"].empty()){
+                if(!ResponseJson["choices"][0].empty() &&
+                    ResponseJson["choices"][0].isObject() &&
+                    ResponseJson["choices"][0].isMember("message")){
+                    if(ResponseJson["choices"][0]["message"].isObject() &&
+                        !ResponseJson["choices"][0]["message"].empty() &&
+                        ResponseJson["choices"][0]["message"].isMember("content")){
+                        if(ResponseJson["choices"][0]["message"]["content"].isString()){
+                            return ResponseJson["choices"][0]["message"]["content"].asString();
                         }
-                   }
+                    }
+                }
             }
+        }
         LogModule::ERROR("报文解析失败!");
         return "";
     }
+
+
     std::string ChatGPTProvider::SendMessagesAsStream(
         std::vector<CppAiChatSdk::Message>& messages,
         std::unordered_map<std::string, std::string>& RequestPrograms,
