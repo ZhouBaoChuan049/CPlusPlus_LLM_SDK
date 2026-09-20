@@ -49,7 +49,7 @@ namespace Cplusplus_LLM_Provider
         bool stream = isstream;
         int Max_token = 0 ;
         // if(RequestPrograms.find("model") != RequestPrograms.end())
-        //     model = RequestPrograms["model"] ; 
+        //     model = RequestPrograms["model"] ; //
         if(RequestPrograms.find("temperature") != RequestPrograms.end())
             temperature = std::stod(RequestPrograms["temperature"]) ; 
         if(RequestPrograms.find("Max_token") != RequestPrograms.end())

@@ -3,6 +3,8 @@
 #include "../../Include/ChatGPTProvider.h"
 #include "../../Include/LLMProvider.h"
 #include <gtest/gtest.h>
+//#define __SEND_MESSAGE__ 
+#ifdef __SEND_MESSAGE__ 
 
 TEST(ChatGptProviderTest , SendMessageTest)
 {
@@ -36,6 +38,47 @@ TEST(ChatGptProviderTest , SendMessageTest)
     //std::cout<<response<<std::endl;
     LogModule::INFO("Response is{}.",response);
 }   
+#endif
+
+#define __SEND_MESSAGE_STREAM__ 
+#ifdef __SEND_MESSAGE_STREAM__ 
+TEST(ChatGptProviderTest , SendMessageTest)
+{
+    std::unique_ptr<Cplusplus_LLM_Provider::LLMProvider> provider =
+         std::make_unique<Cplusplus_LLM_Provider::ChatGPTProvider>();
+
+    ASSERT_FALSE(provider == nullptr);
+    
+    std::unordered_map<std::string ,std::string> Config;
+    Config["_ApiKey"] = getenv("chatgpt_apikey") ;
+    //https://leapone.leapinfra.cn
+    Config["_APIAccessAddress"] = "https://leapone.leapinfra.cn" ; //走中转站
+    //Config["_APIAccessAddress"] = "https://api.openai.com" ;
+    provider->InitModel(Config);
+
+    ASSERT_TRUE(provider->IsModelAvailable());
+    std::cout<<provider->GetModelName()<<std::endl;
+    std::cout<<provider->GetModelDescription()<<std::endl;
+
+    std::vector<CppAiChatSdk::Message> messages;
+    messages.push_back({"user" , "你好!请介绍你自己!"}); 
+
+    std::unordered_map<std::string,std::string> RequestPrograms;
+    RequestPrograms["temperature"] = "1";
+    RequestPrograms["max_output_tokens"] = "4096";
+    std::string AllResponse = provider->SendMessagesAsStream(
+        messages, 
+        RequestPrograms,
+        [](std::string content , bool least){
+            if(least)
+                return ;
+            LogModule::INFO(content);
+        }
+    );
+    ASSERT_FALSE(AllResponse.empty());
+    LogModule::INFO("Response is{}.",AllResponse);
+}   
+#endif
 
 int main(int argc, char* argv[])
 {
