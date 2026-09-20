@@ -14,7 +14,9 @@ TEST(ChatGptProviderTest , SendMessageTest)
     std::unordered_map<std::string ,std::string> Config;
     Config["model"] = "gpt-5.4";
     Config["_ApiKey"] = getenv("chatgpt_apikey") ;
-    Config["_APIAccessAddress"] = "https://api.openai.com" ;
+    //https://leapone.leapinfra.cn
+    Config["_APIAccessAddress"] = "https://leapone.leapinfra.cn" ; //走中转站
+    //Config["_APIAccessAddress"] = "https://api.openai.com" ;
     provider->InitModel(Config);
 
     ASSERT_TRUE(provider->IsModelAvailable());
@@ -28,7 +30,7 @@ TEST(ChatGptProviderTest , SendMessageTest)
     std::unordered_map<std::string,std::string> RequestPrograms;
     RequestPrograms["temperature"] = "1.2";
     RequestPrograms["max_output_tokens"] = "2048";
-    RequestPrograms["model"] = "gpt-5.4";
+    RequestPrograms["model"] = "gpt-5.5";
 
     std::string response = provider->SendMessages(messages , RequestPrograms);
     ASSERT_FALSE(response.empty());
