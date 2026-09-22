@@ -1,7 +1,7 @@
 #include "../Include/Common.h"
 #include "../Include/Util/LogModule.h"
 #include "../Include/DeepSeekProvider.h"
-
+#include "../Include/CommonStruct.h"
 namespace Cplusplus_LLM_Provider
 {
     void DeepSeekProvider::InitModel(std::unordered_map<std::string,std::string> Config)
@@ -26,9 +26,18 @@ namespace Cplusplus_LLM_Provider
     {
         return "DeepSeekv4flash" ;
     }
-    std::string DeepSeekProvider::GetModelDescription()
+    ModelInfo DeepSeekProvider::GetModelDescription()
     {
-        return "DeepSeekv4flash是一款高性能国产大语言模型,擅长代码,推理与通用文本生成.";
+        std::string Description = 
+        "DeepSeekv4flash是一款高性能国产大语言模型\
+        ,擅长代码,推理与通用文本生成.";
+        ModelInfo info(
+            GetModelName(),
+            Description,
+            GetAPIAccessAddress()
+        ) ;
+        info._IsThisModelAvailable = GetAvailable();
+        return info ;
     }
     bool DeepSeekProvider::IsModelAvailable()
     {
@@ -41,7 +50,7 @@ namespace Cplusplus_LLM_Provider
         }
         return true ;
     }
-    std::string DeepSeekProvider::Serialize(std::vector<CppAiChatSdk::Message>& messages,
+    std::string DeepSeekProvider::Serialize(std::vector<Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms, bool isstream)
     {
         std::string model = "deepseek-flash" ;
@@ -159,7 +168,7 @@ namespace Cplusplus_LLM_Provider
         //   << std::endl;
         return Response ;
     }
-    std::string DeepSeekProvider::SendMessages(std::vector<CppAiChatSdk::Message>& messages,
+    std::string DeepSeekProvider::SendMessages(std::vector<Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms)
     {
         //判断一下我们的这个模型有没有转起来。
@@ -194,7 +203,7 @@ namespace Cplusplus_LLM_Provider
         }
         return "";
     }
-    std::string DeepSeekProvider::SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
+    std::string DeepSeekProvider::SendMessagesAsStream(std::vector<Message>& messages,
             std::unordered_map<std::string, std::string>& RequestPrograms,
             func_t callback)
     {

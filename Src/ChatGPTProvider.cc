@@ -23,16 +23,22 @@ namespace Cplusplus_LLM_Provider
         std::string name = "gpt-5.5";
         return name;
     }
-    std::string ChatGPTProvider::GetModelDescription()
+    ModelInfo ChatGPTProvider::GetModelDescription()
     {
         std::string Description = 
         "GPT-5.5 是 OpenAI 的新一代通用大语言模型，具备较强的复杂推理、\
         代码生成、文本理解与任务执行能力。适用于软件开发、技术问答、内容生成、\
         数据分析以及多步骤复杂任务等场景。" ;
-        return Description ;
+        ModelInfo info(
+            GetModelName(),
+            Description,
+            GetAPIAccessAddress()
+        ) ;
+        info._IsThisModelAvailable = GetAvailable();
+        return info ;
     }
     std::string ChatGPTProvider::SendMessages(
-        std::vector<CppAiChatSdk::Message>& messages,
+        std::vector<Message>& messages,
         std::unordered_map<std::string,std::string>& RequestPrograms
     )
     {
@@ -149,7 +155,7 @@ namespace Cplusplus_LLM_Provider
 
 
     std::string ChatGPTProvider::SendMessagesAsStream(
-        std::vector<CppAiChatSdk::Message>& messages,
+        std::vector<Message>& messages,
         std::unordered_map<std::string, std::string>& RequestPrograms,
         func_t callback
     )

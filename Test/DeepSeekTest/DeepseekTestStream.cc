@@ -2,7 +2,9 @@
 #include "../../Include/Util/LogModule.h"
 #include "../../Include/DeepSeekProvider.h"
 #include "../../Include/LLMProvider.h"
+#include "../../Include/CommonStruct.h"
 #include <gtest/gtest.h>
+using namespace Cplusplus_LLM_Provider ;
 
 TEST(DeepSeekProviderTest , SendMessageTest)
 {
@@ -19,7 +21,7 @@ TEST(DeepSeekProviderTest , SendMessageTest)
 
     ASSERT_TRUE(provider->IsModelAvailable());
 
-    std::vector<CppAiChatSdk::Message> messages;
+    std::vector<Message> messages;
     messages.push_back({"user" , "你好!请介绍你自己!"}); 
 
     std::unordered_map<std::string,std::string> RequestPrograms;

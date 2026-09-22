@@ -5,8 +5,28 @@
 #include "../../Include/DeepSeekProvider.h"
 #include "../../Include/ChatGPTProvider.h"
 #include "../../Include/OllamaProvider.h"
+#include "../../Include/CommonStruct.h"
 #include <gtest/gtest.h>
 using namespace Cplusplus_LLM_Provider ;
+
+    // class ModelInfo
+    // {
+    // public:
+    //     std::string _ModelName ;
+    //     std::string _ModelDesc ;
+    //     std::string _ModelProvider ;
+    //     std::string _APIAccessAddress ; 
+    //     bool _IsThisModelAvailable ;
+    //     ModelInfo(const std::string& modelname = "", const std::string modeldesc = "",
+    //         const std::string& provider = "",const std::string& address = "")
+    //         :_ModelName(modelname),
+    //          _ModelDesc(modeldesc),
+    //          _ModelProvider(provider),
+    //          _APIAccessAddress(address)
+    //     {}
+    // };
+
+
 TEST(TestLLMManager , TestFunctions)
 {
     LLMManager manager ;
@@ -42,9 +62,9 @@ TEST(TestLLMManager , TestFunctions)
     ConfigForOllama["APIAccessAddress"] = "127.0.0.1:11434" ;
     manager.InitThisModule("deepseek-r1:1.5b", ConfigForOllama);
     
-    std::vector<std::pair<std::string,std::string>> models = manager.GetAllAvailableModule();
+    std::vector<std::pair<std::string,ModelInfo>> models = manager.GetAllAvailableModule();
     for(auto m : models)
-        std::cout<<"模型名称:["<<m.first<<"],模型描述信息:["<<m.second<<"]"<<std::endl;
+        std::cout<<"模型名称:["<<m.first<<"],模型描述信息:["<<m.second._ModelDesc<<"]"<<std::endl;
     
     ASSERT_TRUE(manager.IsThisModelAvailable("deepseek-flash"));
     ASSERT_TRUE(manager.IsThisModelAvailable("gpt-5.5"));

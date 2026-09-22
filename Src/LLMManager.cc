@@ -3,9 +3,9 @@
 #include "../Include/LLMManager.h"
 namespace Cplusplus_LLM_Provider
 {
-    void LLMManager::SetModelInformation(std::string modelname, std::string info)
+    void LLMManager::SetModelInformation(std::string modelname,std::string info)
     {
-        ProviderInfo[modelname] = info ;
+        ProviderInfo[modelname]._ModelDesc = info ;
     }
     bool LLMManager::RegistrModule(
         std::string modelname, 
@@ -19,7 +19,7 @@ namespace Cplusplus_LLM_Provider
         if(ProviderCollections.find(modelname) == ProviderCollections.end())
             ProviderCollections.insert(make_pair(modelname, provider));
         if(ProviderInfo.find(modelname) ==ProviderInfo.end())   
-            ProviderInfo.insert(make_pair(modelname, provider->GetModelDescription())); 
+            ProviderInfo.insert(make_pair(modelname, provider->GetModelDescription()));// 
         LogModule::INFO("Model:{}Have Been Registred",modelname);
         return true ;
     }
@@ -37,9 +37,9 @@ namespace Cplusplus_LLM_Provider
         ProviderCollections[modelname]->InitModel(Config);
         return true ;
     }
-    std::vector<std::pair<std::string,std::string>> LLMManager::GetAllAvailableModule()
+    std::vector<std::pair<std::string,ModelInfo>> LLMManager::GetAllAvailableModule()
     {
-        std::vector<std::pair<std::string,std::string>> ModelColl ;
+        std::vector<std::pair<std::string,ModelInfo>> ModelColl ;
         for(auto model : ProviderInfo)
         {
             if(IsThisModelAvailable(model.first))
@@ -58,7 +58,7 @@ namespace Cplusplus_LLM_Provider
     }
     std::string LLMManager::SendMessageToThisModlue(
         std::string modelname,
-        std::vector<CppAiChatSdk::Message> messages,
+        std::vector<Message> messages,
         std::unordered_map<std::string,std::string>& RequestPrograms)
     {
         if(ProviderCollections.find(modelname) == ProviderCollections.end()){
@@ -73,7 +73,7 @@ namespace Cplusplus_LLM_Provider
     }
     std::string LLMManager::SendMessageToThisModlueAsStream(
         std::string modelname,
-        std::vector<CppAiChatSdk::Message> messages,
+        std::vector<Message> messages,
         std::unordered_map<std::string,std::string>& RequestPrograms,
         func_t callback)
     {

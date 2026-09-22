@@ -2,7 +2,9 @@
 #include "../../Include/Util/LogModule.h"
 #include "../../Include/OllamaProvider.h"
 #include "../../Include/LLMProvider.h"
+#include "../../Include/CommonStruct.h"
 #include <gtest/gtest.h>
+using namespace Cplusplus_LLM_Provider ;
 #ifdef __OLLAMA_SEND_MESSAGE_TEST__
 TEST(OllamaProviderTest , SendMessageTest)
 {
@@ -24,9 +26,9 @@ TEST(OllamaProviderTest , SendMessageTest)
 
     ASSERT_TRUE(provider->IsModelAvailable());
     std::cout<<provider->GetModelName()<<std::endl;
-    std::cout<<provider->GetModelDescription()<<std::endl;
+    std::cout<<provider->GetModelDescription()._ModelDesc<<std::endl;
 
-    std::vector<CppAiChatSdk::Message> messages;
+    std::vector<Message> messages;
     //messages.push_back({"user" , "你好!请告诉我你的名字!"});
     messages.push_back({"user", "请生成十个字！什么都行。"});
     
@@ -61,9 +63,9 @@ TEST(OllamaProviderTest , SendMessageTest)
 
     ASSERT_TRUE(provider->IsModelAvailable());
     std::cout<<provider->GetModelName()<<std::endl;
-    std::cout<<provider->GetModelDescription()<<std::endl;
+    std::cout<<provider->GetModelDescription()._ModelDesc<<std::endl;
 
-    std::vector<CppAiChatSdk::Message> messages;
+    std::vector<Message> messages;
     messages.push_back({"user" , "你好!请介绍你自己!"}); 
 
     std::unordered_map<std::string,std::string> RequestPrograms;

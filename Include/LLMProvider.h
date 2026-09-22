@@ -19,10 +19,10 @@ const std::string POS = "\n\n";
         virtual void InitModel(std::unordered_map<std::string,std::string> Config) = 0;
         virtual bool IsModelAvailable() = 0;
         virtual std::string GetModelName() = 0;
-        virtual std::string GetModelDescription() = 0;
-        virtual std::string SendMessages(std::vector<CppAiChatSdk::Message>& messages,
+        virtual ModelInfo GetModelDescription() = 0;
+        virtual std::string SendMessages(std::vector<Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms) = 0;
-        virtual std::string SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
+        virtual std::string SendMessagesAsStream(std::vector<Message>& messages,
             std::unordered_map<std::string, std::string>& RequestPrograms,
             func_t callback) = 0;
     protected:

@@ -12,15 +12,15 @@ namespace Cplusplus_LLM_Provider
         ~DeepSeekProvider() override = default;
         void InitModel(std::unordered_map<std::string,std::string> Config)override;
         std::string GetModelName()override;
-        std::string GetModelDescription()override;
-        std::string SendMessages(std::vector<CppAiChatSdk::Message>& messages,
+        ModelInfo GetModelDescription()override;
+        std::string SendMessages(std::vector<Message>& messages,
             std::unordered_map<std::string,std::string>& RequestPrograms)override;
-        std::string SendMessagesAsStream(std::vector<CppAiChatSdk::Message>& messages,
+        std::string SendMessagesAsStream(std::vector<Message>& messages,
             std::unordered_map<std::string, std::string>& RequestPrograms,
             func_t callback)override;    
     private:
         bool IsModelAvailable() override;
-        std::string Serialize(std::vector<CppAiChatSdk::Message>& messages,
+        std::string Serialize(std::vector<Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms,bool isstream);
         httplib::Result SendRequestMessage(std::string& RequestBodyString);
         Json::Value Deserialize(std::string& ResponseString);

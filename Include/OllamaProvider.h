@@ -14,19 +14,19 @@ namespace Cplusplus_LLM_Provider
         void InitModel(std::unordered_map<std::string,std::string> Config) override;
 
         std::string GetModelName() override;
-        std::string GetModelDescription() override;
+        ModelInfo GetModelDescription() override;
         std::string SendMessages(
-            std::vector<CppAiChatSdk::Message>& messages,
+            std::vector<Message>& messages,
             std::unordered_map<std::string,std::string>& RequestPrograms
         ) override;
         std::string SendMessagesAsStream(
-            std::vector<CppAiChatSdk::Message>& messages,
+            std::vector<Message>& messages,
             std::unordered_map<std::string, std::string>& RequestPrograms,
             func_t callback
         ) override;
     private:
         bool IsModelAvailable() override;
-        std::string Serialize(std::vector<CppAiChatSdk::Message>& messages,
+        std::string Serialize(std::vector<Message>& messages,
              std::unordered_map<std::string,std::string>& RequestPrograms,bool isstream);
         httplib::Result SendRequestMessage(std::string& RequestBodyString);
         Json::Value Deserialize(std::string& ResponseString);

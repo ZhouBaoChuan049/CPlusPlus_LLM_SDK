@@ -25,14 +25,22 @@ namespace Cplusplus_LLM_Provider
         {
             return "Kimi K3";
         }
-        std::string KimiProvider::GetModelDescription() 
+        ModelInfo KimiProvider::GetModelDescription() 
         {
-            return "Kimi K3是月之暗面(Moonshot AI)推出的旗舰级、\
+            std::string Description = 
+            "Kimi K3是月之暗面(Moonshot AI)推出的旗舰级、\
             开放权重、超长上下文、重点强化 Coding 和 Agent 能力的大模型";
+            ModelInfo info(
+                GetModelName(),
+                Description,
+                GetAPIAccessAddress()
+            ) ;
+            info._IsThisModelAvailable = GetAvailable();
+            return info ;
         }
 
         std::string Serialize(
-            std::vector<CppAiChatSdk::Message>& messages,
+            std::vector< Message>& messages,
             std::unordered_map<std::string,std::string>& RequestPrograms,
             bool isstream)
         {
@@ -55,14 +63,14 @@ namespace Cplusplus_LLM_Provider
 
 
         std::string KimiProvider::SendMessages(
-            std::vector<CppAiChatSdk::Message>& messages,
+            std::vector< Message>& messages,
             std::unordered_map<std::string,std::string>& RequestPrograms
         ) 
         {
 
         }
         std::string KimiProvider::SendMessagesAsStream(
-            std::vector<CppAiChatSdk::Message>& messages,
+            std::vector< Message>& messages,
             std::unordered_map<std::string, std::string>& RequestPrograms,
             func_t callback
         ) 

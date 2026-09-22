@@ -2,7 +2,7 @@
 #define __COMMON_STRUCT__
 #include "Common.h"
 
-namespace CppAiChatSdk
+namespace Cplusplus_LLM_Provider
 {
     class Message
     {
@@ -16,40 +16,21 @@ namespace CppAiChatSdk
             _Content(content)
         {}
     };
-    //模型配置信息
-    class Config
-    {
-    public:
-        std::string _ModdelName ;
-        double _Temperature = 0.7 ;//模型温度
-        int _MaxToken = 2048 ;
-    };
-    //API接入
-    class APIConfig : public  Config
-    {
-    public:
-        std::string _APIKey ;
-    };
-    //Ollama接入
-    class OllamaConfig
-    {
-    public:
-        
-    };
     //LLM介绍信息
     class ModelInfo
     {
     public:
         std::string _ModelName ;
         std::string _ModelDesc ;
-        std::string _ModelProvider ;
         std::string _APIAccessAddress ; 
         bool _IsThisModelAvailable ;
-        ModelInfo(const std::string& modelname = "", const std::string modeldesc = "",
-            const std::string& provider = "",const std::string& address = "")
+        ModelInfo(
+            const std::string& modelname = "", 
+            const std::string modeldesc = "",
+            const std::string& address = ""
+        )
             :_ModelName(modelname),
              _ModelDesc(modeldesc),
-             _ModelProvider(provider),
              _APIAccessAddress(address)
         {}
     };

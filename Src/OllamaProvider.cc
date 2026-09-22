@@ -38,9 +38,18 @@ namespace Cplusplus_LLM_Provider
         SetAvailable(true);
     } 
     std::string OllamaProvider::GetModelName() { return _ModelName ;}
-    std::string OllamaProvider::GetModelDescription() { return _ModelDesc ;}
+    ModelInfo OllamaProvider::GetModelDescription() 
+    { 
+        ModelInfo info(
+            _ModelName,
+            _ModelDesc,
+            GetAPIAccessAddress()
+        );
+        info._IsThisModelAvailable = GetAvailable();
+        return info ;
+    }
     std::string OllamaProvider::Serialize(
-        std::vector<CppAiChatSdk::Message>& messages,
+        std::vector< Message>& messages,
         std::unordered_map<std::string,std::string>& RequestPrograms,
         bool isstream
     )
@@ -165,7 +174,7 @@ namespace Cplusplus_LLM_Provider
         return "" ;
     }
     std::string OllamaProvider::SendMessages(
-        std::vector<CppAiChatSdk::Message>& messages,
+        std::vector< Message>& messages,
         std::unordered_map<std::string,std::string>& RequestPrograms
     )    
     {
@@ -205,7 +214,7 @@ namespace Cplusplus_LLM_Provider
         return "" ;
     }
     std::string OllamaProvider::SendMessagesAsStream(
-        std::vector<CppAiChatSdk::Message>& messages,
+        std::vector< Message>& messages,
         std::unordered_map<std::string, std::string>& RequestPrograms,
         func_t callback
     )    
