@@ -1,0 +1,3 @@
+/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/build/CMakeFiles/TestLLMManager.dir
+/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/build/CMakeFiles/edit_cache.dir
+/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/build/CMakeFiles/rebuild_cache.dir

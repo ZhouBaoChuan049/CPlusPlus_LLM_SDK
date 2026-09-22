@@ -1,0 +1,322 @@
+[10 : 04 : 28][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][19  ]Model:deepseek-flashHave Been Registred
+[10 : 04 : 28][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][19  ]Model:gpt-5.5Have Been Registred
+[10 : 04 : 28][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][19  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 04 : 28][error  ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][28  ]模型未注册!不能初始化未注册的模型!
+[10 : 04 : 28][error  ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][28  ]模型未注册!不能初始化未注册的模型!
+[10 : 04 : 28][error  ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][28  ]模型未注册!不能初始化未注册的模型!
+[10 : 04 : 28][error  ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][48  ]模型未注册!
+[10 : 10 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][19  ]Model:deepseek-flashHave Been Registred
+[10 : 10 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][19  ]Model:gpt-5.5Have Been Registred
+[10 : 10 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][19  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 25 : 17][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-flashHave Been Registred
+[10 : 25 : 17][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:gpt-5.5Have Been Registred
+[10 : 25 : 17][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 28 : 52][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-flashHave Been Registred
+[10 : 28 : 52][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:gpt-5.5Have Been Registred
+[10 : 28 : 52][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 28 : 56][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc][124 ]Get Response Success!
+[10 : 31 : 28][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-flashHave Been Registred
+[10 : 31 : 28][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:gpt-5.5Have Been Registred
+[10 : 31 : 28][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 31 : 31][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc][285 ]响应报文读取正常结束![DONE]
+[10 : 31 : 31][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][76  ]Response is[DONE].
+[10 : 33 : 20][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-flashHave Been Registred
+[10 : 33 : 20][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:gpt-5.5Have Been Registred
+[10 : 33 : 20][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你好
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]！
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我是
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] **
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]Deep
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]Se
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]ek
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]**
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]由
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]深度
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]求
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]索
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]公司
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]开发的
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] AI
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]助手
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]😊
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我可以
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]帮你
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]做
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]很多事情
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]比如
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]：
+
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]回答
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]各类
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]问题
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]解释
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]概念
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]写作
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]改写
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]翻译
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]总结
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]编程
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]调试
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]代码
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]算法
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]思路
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]分析
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]文档
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]表格
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]报告
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]等内容
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]阅读
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]上传
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]的文件
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]（
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]如
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] PDF
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]Word
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]Excel
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]PPT
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]T
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]XT
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]等
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]）
+
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]分析
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]图片
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]中的
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]可见
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]信息
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]比如
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]识别
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]图表
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]截图
+[10 : 33 : 22][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]内容
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]等
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]-
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]进行
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]头脑
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]风暴
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]创意
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]策划
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]学习
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]辅导
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]
+
+
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]支持
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]长
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]上下文
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]适合
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]处理
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]较
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]长的
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]资料
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]；
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]在
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] App
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]端
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]也
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]支持
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]语音
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]输入
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]联网
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]搜索
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]需要
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]手动
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]开启
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我是
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]免费的
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] AI
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]助手
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]但
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]也不是
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]万
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]能的
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]知识
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]截止
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]时间
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]实时
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]信息
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]等
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]可能会有
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]局限
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+
+
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]简单
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]说
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]：
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我是
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你的
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]中文
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]/
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]多
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]语言
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] AI
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]助手
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]可以
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]陪你
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]聊天
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]学习和
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]解决问题
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]  
+
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]有什么
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]想
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]让我
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]帮忙
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]的吗
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]？
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc][285 ]响应报文读取正常结束![DONE]
+[10 : 33 : 23][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][76  ]Response is你好！我是 **DeepSeek**，由深度求索公司开发的 AI 助手。😊
+
+我可以帮你做很多事情，比如：
+
+- 回答各类问题，解释概念
+- 写作、改写、翻译、总结
+- 编程、调试代码、算法思路
+- 分析文档、表格、报告等内容
+- 阅读你上传的文件（如 PDF、Word、Excel、PPT、TXT 等）
+- 分析图片中的可见信息，比如识别图表、截图内容等
+- 进行头脑风暴、创意策划、学习辅导
+
+我支持长上下文，适合处理较长的资料；在 App 端也支持语音输入。联网搜索需要手动开启。我是免费的 AI 助手，但也不是万能的，知识截止时间、实时信息等可能会有局限。
+
+简单说：我是你的中文/多语言 AI 助手，可以陪你聊天、学习和解决问题。  
+有什么想让我帮忙的吗？[DONE].
+[10 : 34 : 03][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-flashHave Been Registred
+[10 : 34 : 03][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:gpt-5.5Have Been Registred
+[10 : 34 : 03][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/LLMManager.cc][23  ]Model:deepseek-r1:1.5bHave Been Registred
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你好
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]！
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我是
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] AI
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ] 
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]助手
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]可以
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]帮你
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]回答问题
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]整理
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]信息
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]写作
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]翻译
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]编程
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]辅助
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]总结
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]归纳
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]头脑
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]风暴
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]等
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+
+
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我会
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]尽量
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]用
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]清晰
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]准确
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]、
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]友好的
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]方式
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]回答
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+[10 : 34 : 05][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]不过
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我也
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]可能
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]出错
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]涉及
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]重要
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]或
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]实时
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]信息
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]时
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]，
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]建议
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你再
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]核实
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]一下
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]。
+
+
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]有什么
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]我可以
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]帮
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]你的
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]吗
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][72  ]？
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Src/DeepSeekProvider.cc][285 ]响应报文读取正常结束![DONE]
+[10 : 34 : 06][info   ][/home/konata/Project/CPlusPlus_LLM_SDK/Test/LLMManagerTest/LLMManagerTest.cc][76  ]Response is你好！我是 AI 助手，可以帮你回答问题、整理信息、写作翻译、编程辅助、总结归纳、头脑风暴等。
+
+我会尽量用清晰、准确、友好的方式回答你。不过我也可能出错，涉及重要或实时信息时，建议你再核实一下。
+
+有什么我可以帮你的吗？[DONE].
