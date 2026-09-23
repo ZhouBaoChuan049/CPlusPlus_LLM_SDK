@@ -34,7 +34,7 @@ namespace Cplusplus_LLM_Provider
              _APIAccessAddress(address)
         {}
     };
-    class SessionInfo
+    class Session
     {
     public:
         std::string _SessionID ;
@@ -42,7 +42,7 @@ namespace Cplusplus_LLM_Provider
         std::vector<Message> _Messages;
         std::time_t _TimeCreate ;
         std::time_t _LastTime ;
-        SessionInfo(std::string name)
+        Session(std::string name)
             :_ModelNameUsed(name)
         {}
     };

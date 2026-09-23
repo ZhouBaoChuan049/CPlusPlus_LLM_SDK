@@ -8,10 +8,10 @@ namespace Cplusplus_LLM_Provider
     {
     public:
         SessionManager();
-        std::string CreatSession(const std::string& ModelName);
-        std::shared_ptr<SessionInfo> GetSession(const std::string& SessionId);
+        std::string CreatSession(const std::string& SessionName,const std::string ModelName);
+        std::shared_ptr<Session> GetSession(const std::string& SessionId);
         bool AddMessage(const std::string SessionId , const Message& message);
-        std::vector<Message> GetHistoryMessages(const std::string SessionId) const ;
+        std::vector<Message> GetHistoryMessages(const std::string SessionId);
         void UpdateSessionTimesTamp(const std::string& SessionId);
         std::vector<std::string> GetSessionLists() const;
         bool DeleteSession(const std::string& SessionId);
@@ -20,7 +20,7 @@ namespace Cplusplus_LLM_Provider
     private:
         std::string GenerateSessionId();
         std::string GenerateMessageId(size_t MessageCounter);
-        std::unordered_map<std::string,std::shared_ptr<SessionInfo>> _sessions;
+        std::unordered_map<std::string,std::shared_ptr<Session>> _sessions;
         mutable std::mutex _mutex;
         std::atomic<int64_t> _SessionCount = {0};
     };
