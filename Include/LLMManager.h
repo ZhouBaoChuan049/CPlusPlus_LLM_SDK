@@ -1,3 +1,6 @@
+#ifndef __LLM_MANAGER__
+#define __LLM_MANAGER__
+
 #include "./Util/LogModule.h"
 #include "Common.h"
 #include "CommonStruct.h"
@@ -31,3 +34,5 @@ namespace Cplusplus_LLM_Provider
         std::unordered_map<std::string/*Name*/,ModelInfo/*Info*/> ProviderInfo ;
     };
 }
+
+#endif
