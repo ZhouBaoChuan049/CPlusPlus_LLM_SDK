@@ -8,6 +8,7 @@ namespace Cplusplus_LLM_Provider
     {
     public:
         std::string _MessageID ;
+        std::string _SessionID ;
         std::string _Role ;
         std::string _Content ;
         std::time_t _Time ; 

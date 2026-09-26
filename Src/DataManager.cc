@@ -1,0 +1,419 @@
+#include "../Include/Common.h"
+#include "../Include/Util/LogModule.h"
+#include "../Include/CommonStruct.h"
+#include "../Include/DataManager.h"
+namespace Cplusplus_LLM_Provider
+{
+    bool DataManager::InitDataBase()
+    {
+        _mutex.lock();
+        std::string CreateSessionTableSQL = R"(
+            CREATE TABLE IF NOT EXIST Sessions
+            {
+                _SessionID TEXT PRIMARY KEY ,
+                _ModelNameUsed TEXT,
+                _TimeCreate INTEGER,
+                _LastTime INTEGER
+            }
+        )";
+        int ret = sqlite3_exec(_db, CreateSessionTableSQL.c_str(), nullptr, nullptr, nullptr);
+        if(ret !=SQLITE_OK)
+        {
+            _mutex.unlock();
+            LogModule::CRITICAL("创建Session表失败,失败原因{}",sqlite3_errmsg(_db));
+            return false ;
+        }
+        LogModule::INFO("创建Session表成功");
+
+        std::string CreateMessageTableSQL = R"(
+            CREATE TABLE IF NOT EXIST Messages
+            {
+                _MessageID TEXT PRIMARY KEY,
+                _SessionID TEXT,
+                _Role TEXT,
+                _Content TEXT,
+                _Time INTEGER
+            }
+        )";
+        int ret = sqlite3_exec(_db, CreateMessageTableSQL.c_str(), nullptr, nullptr, nullptr);
+        if(ret !=SQLITE_OK)
+        {
+            _mutex.unlock();
+            LogModule::CRITICAL("创建Message表失败,失败原因{}",sqlite3_errmsg(_db));
+            return false ;
+        }
+        LogModule::INFO("创建Message表成功");
+        _mutex.unlock();
+        return true ;
+    }
+    DataManager::DataManager(std::string dbname)
+    {
+        _mutex.lock();
+        int ret = sqlite3_open(dbname.c_str(),&_db);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::CRITICAL("打开数据库{}失败,失败原因{}",dbname,sqlite3_errmsg(_db));
+            std::string Errmsg = "打开数据库失败";
+            _mutex.unlock();
+            throw Errmsg ;
+        }
+        LogModule::INFO("打开数据库成功");
+        bool check = InitDataBase();
+        if(check == false)
+        {
+            _mutex.unlock();
+            std::string Errmsg = "初始化数据库失败";
+            throw Errmsg ;
+        }
+        _mutex.unlock();
+    }
+    bool DataManager::InsertSession(const Session& session)
+    {
+        _mutex.lock();
+        std::string InsertSQL = R"(
+            INSERT INTO Sessions (_SessionID,_ModelNameUsed,_TimeCreate,_LastTime)
+            VALUES(?,?,?,?);
+        )";
+        sqlite3_stmt* stmt ;
+
+        int ret = sqlite3_prepare(_db,InsertSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("InsertSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        sqlite3_bind_text(stmt ,0,session._SessionID.c_str(),-1,SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt ,1,session._ModelNameUsed.c_str(),-1,SQLITE_TRANSIENT);
+        sqlite3_bind_int(stmt ,2,session._TimeCreate);
+        sqlite3_bind_int(stmt ,3,session._LastTime);
+
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("InsertSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        LogModule::INFO("插入Session{}成功!", session._SessionID);
+        sqlite3_finalize(stmt);
+        _mutex.unlock();
+        return true;
+    }
+    std::shared_ptr<Session> DataManager::GetSession(const std::string& sessionId)const
+    {
+        _mutex.lock();
+        std::string GetSQL = R"( 
+            SELECT _ModelNameUsed _TimeCreate _LastTime FROM Sessions WHERE _SessionID=?;
+        )";
+        sqlite3_stmt*stmt ;
+        int ret = sqlite3_prepare(_db,GetSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("GetSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return nullptr ;
+        }
+        sqlite3_bind_text(stmt,0,sessionId.c_str(),-1,SQLITE_TRANSIENT);
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("GetSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return nullptr ;
+        }
+        std::string ModelName = 
+            reinterpret_cast<const char*>(sqlite3_column_text(stmt,1));
+        time_t TimeCreate = sqlite3_column_int(stmt,2);
+        time_t LastTime = sqlite3_column_int(stmt,3);
+        Session session(ModelName);
+        session._LastTime = LastTime;
+        session._TimeCreate = TimeCreate;
+        session._SessionID = sessionId;
+        sqlite3_finalize(stmt);
+        _mutex.unlock();
+        return std::make_shared<Session>(session);
+    }
+    bool DataManager::updateSessionTimestamp(const std::string& sessionId, std::time_t timestamp)
+    {
+        _mutex.lock();
+        std::string updateSQL = R"(
+            UPDATE Sessions SET _LastTime = ? WHERE _SessionID=?;
+        )";  
+        sqlite3_stmt* stmt ;
+        int ret = sqlite3_prepare(_db,updateSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("updateSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false;
+        }
+        sqlite3_bind_int(stmt,0,timestamp);
+        sqlite3_bind_text(stmt,1,sessionId.c_str(),-1,SQLITE_TRANSIENT);
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("updateSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        sqlite3_finalize(stmt);
+        LogModule::INFO("updateSQL执行成功!");
+        _mutex.unlock();
+        return true ;
+    }
+    bool DataManager::deleteSession(const std::string& sessionId)
+    {
+        _mutex.lock();
+        std::string DelSQL = R"(
+            DELETE FROM Sessions WHERE _SessionID=?;
+        )";
+        sqlite3_stmt* stmt ;
+        int ret = sqlite3_prepare(_db,DelSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("DelSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false;
+        }
+        sqlite3_bind_text(stmt,0,sessionId.c_str(),-1,SQLITE_TRANSIENT);
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("DelSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        sqlite3_finalize(stmt);
+        LogModule::INFO("DelSQL执行成功!");
+        _mutex.unlock();
+        return true ;
+    }
+    std::vector<std::string> DataManager::getAllSessionIds()const
+    {
+        _mutex.lock();
+        std::string selectALLSQL = R"(
+            SELECT _SessionID FROM Sessions ORDER BY _LastTime DESC ;
+        )";
+        sqlite3_stmt*stmt ;
+        int ret = sqlite3_prepare(_db,selectALLSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("selectALLSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return {} ;
+        }
+        std::vector<std::string> IDcollections ;
+        while(sqlite3_step(stmt) != SQLITE_ROW)
+        {
+            std::string _id = 
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt,0));
+            IDcollections.push_back(_id);
+        }
+        sqlite3_finalize(stmt);
+        _mutex.unlock();
+        return IDcollections;
+    }
+    std::vector<std::shared_ptr<Session>> DataManager::getAllSessions()const
+    {
+        _mutex.lock();
+        std::string selectALLSQL = R"(
+            SELECT _SessionID _ModelNameUsed _TimeCreate _LastTime FROM Sessions ORDER BY _LastTime DESC ;
+        )";
+        sqlite3_stmt*stmt ;
+        int ret = sqlite3_prepare(_db,selectALLSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("selectALLSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return {} ;
+        }
+        std::vector<std::shared_ptr<Session>> Sessionscollections ;
+        while(sqlite3_step(stmt) != SQLITE_ROW)
+        {
+            std::string id = 
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt,0));
+            std::string modelname = 
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt,1));
+            time_t TimeCreate = sqlite3_column_int(stmt,2);
+            time_t  LastTime = sqlite3_column_int(stmt,2);
+
+            std::shared_ptr<Session> _session ;
+            _session->_SessionID = id ;
+            _session->_ModelNameUsed = modelname;
+            _session->_TimeCreate = TimeCreate;
+            _session->_LastTime = LastTime;
+            Sessionscollections.push_back(_session);
+        }
+        sqlite3_finalize(stmt);
+        _mutex.unlock();
+        return Sessionscollections;
+    }
+    bool DataManager::clearAllSessions()
+    {
+        _mutex.lock();
+        std::string clearAllSQL = R"(
+            DELETE FROM Sessions ;
+        )";
+        sqlite3_stmt* stmt ;
+        int ret = sqlite3_prepare(_db,clearAllSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("clearAllSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return 0;
+        }
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("clearAllSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return 0;
+        }
+        sqlite3_finalize(stmt);
+        LogModule::INFO("clearAllSQL执行成功!");
+        _mutex.unlock();
+        return true;
+    }
+    size_t DataManager::getSessionCount()const
+    {
+        _mutex.lock();
+        std::string CountSQL = R"(
+            SELECT COUNT(*) FROM Sessions ;
+        )";
+        sqlite3_stmt* stmt ;
+        int ret = sqlite3_prepare(_db,CountSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("CountSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return 0;
+        }
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("CountSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return 0;
+        }
+        int count = sqlite3_column_int(stmt,0);
+        sqlite3_finalize(stmt);
+        LogModule::INFO("CountSQL执行成功!");
+        _mutex.unlock();
+        return count;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////
+    bool DataManager::insertMessage(const std::string& sessionId, const Message& message)
+    {
+        _mutex.lock();
+        std::string InsertSQL = R"(
+            INSERT INTO Messages (_MessageID,_Role,_Content,_Time)
+            VALUES(?,?,?,?);
+        )";
+        sqlite3_stmt* stmt ;
+
+        int ret = sqlite3_prepare(_db,InsertSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("InsertSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        sqlite3_bind_text(stmt ,0,message._MessageID.c_str(),-1,SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt ,1,message._Role.c_str(),-1,SQLITE_TRANSIENT);
+        sqlite3_bind_text(stmt ,2,message._Content.c_str(),-1,SQLITE_TRANSIENT);
+        sqlite3_bind_int(stmt ,3,message._Time);
+
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("InsertSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        LogModule::INFO("插入Messages{}成功!", message._MessageID);
+        sqlite3_finalize(stmt);
+        _mutex.unlock();
+        return true;
+    }
+    std::vector<Message> DataManager::getSessionMessages(const std::string& sessionId)const
+    {
+        _mutex.lock();
+        std::string GetSQL = R"( 
+            SELECT _MessageID _Role _Content _Time FROM Sessions WHERE _SessionID=?;
+        )";
+        sqlite3_stmt*stmt ;
+        int ret = sqlite3_prepare(_db,GetSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("GetSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return {} ;
+        }
+        std::vector<Message> messages ;
+        sqlite3_bind_text(stmt,0,sessionId.c_str(),-1,SQLITE_TRANSIENT);
+        while(sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            std::string MessageID = 
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt,0));
+            std::string Role = 
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt,1));
+            std::string Content = 
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt,2));
+            time_t Time = sqlite3_column_int(stmt,3);
+            Message _message(Role,Content) ;
+            _message._MessageID = MessageID ;
+            _message._SessionID = sessionId ;
+            messages.push_back(_message);
+        }
+        sqlite3_finalize(stmt);
+        _mutex.unlock();
+        return messages;
+    }
+    bool DataManager::deleteSessionMessages(const std::string& sessionId)
+    {
+        _mutex.lock();
+        std::string DelSQL = R"(
+            DELETE FROM Messages WHERE _SessionID=?;
+        )";
+        sqlite3_stmt* stmt ;
+        int ret = sqlite3_prepare(_db,DelSQL.c_str(),-1,&stmt,nullptr);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("DelSQL准备失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false;
+        }
+        sqlite3_bind_text(stmt,0,sessionId.c_str(),-1,SQLITE_TRANSIENT);
+        ret = sqlite3_step(stmt);
+        if(ret != SQLITE_OK)
+        {
+            LogModule::ERROR("DelSQL执行失败,失败原因{}",sqlite3_errmsg(_db));
+            sqlite3_finalize(stmt);
+            _mutex.unlock();
+            return false ;
+        }
+        sqlite3_finalize(stmt);
+        LogModule::INFO("DelSQL执行成功!");
+        _mutex.unlock();
+        return true ;
+    }
+}
